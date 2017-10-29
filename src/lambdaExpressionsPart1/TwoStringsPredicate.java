@@ -1,3 +1,4 @@
+package lambdaExpressionsPart1;
 
 @FunctionalInterface
 public interface TwoStringsPredicate {
