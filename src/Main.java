@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Main {
+public class Main<E> {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
@@ -55,10 +55,33 @@ public class Main {
         //--------------------------------------------------------------------------------------------------------
 
         System.out.println("The better string between 'building' and 'htight' is: ");
-        System.out.println(betterString("Building", "height", (s1, s2) -> s1.length() > s2.length()));
+        System.out.println(betterString("building", "height", (s1, s2) -> s1.length() > s2.length()));
 
         System.out.println("The better sting between 'Ferrary' and 'Bentley' is ");
         System.out.println(betterString("Ferrary", "Bentley", (s1, s2) -> s1.contains("B")));
+
+        //=============================================================================================================================================
+        //=============================================================================================================================================
+
+        //EX 3: Making generically-typed interfaces for which lambdas can be used.
+        //Use generics to replace your String-specific solutions to problem 3
+        //with generically typed solutions. That is, replace betterString
+        //with betterEntry and TwoStringPredicate with TwoElementPredicate. Make sure your previous
+        //examples still work when you only change betterString to betterElement. But, now you should
+        //also be able to supply two Cars and a Car predicate, two Employees and an Employee predicate,
+        //etc.
+
+        System.out.println();
+        System.out.println("Determining the better element using a generic-typed interface:");
+        Car car1 = new Car("Ferrary", "red", 2017);
+        Car car2 = new Car("Audi", "black", 2009);
+        System.out.println("The better element between car1 and car 2 is: ");
+        System.out.println(ElementUtils.betterElement(car1, car2, (c1, c2) -> c1.getFabricationYear() > car2.getFabricationYear()));
+
+        System.out.println();
+        System.out.println("Running the previous exercice using the generic-typed function");
+        System.out.println("The better sting between 'building' and 'height' is: ");
+        System.out.println(ElementUtils.betterElement("building", "height", (s1, s2) -> s1.length() > s2.length()));
 
     }
 
@@ -71,4 +94,8 @@ public class Main {
         }
         return result;
     }
+
+
+
+
 }
