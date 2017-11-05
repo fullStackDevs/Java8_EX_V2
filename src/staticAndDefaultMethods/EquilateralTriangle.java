@@ -5,7 +5,7 @@ public class EquilateralTriangle implements RegularPolygon {
     private int sideLength;
 
     public EquilateralTriangle(int sideLength) {
-        this.sideLength = sideLength
+        this.sideLength = sideLength;
     }
 
     public int getNumSides() {
