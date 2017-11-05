@@ -29,7 +29,7 @@ public class Main<E> {
         Arrays.sort(cars, (car1, car2) -> car1.charAt(0) - car2.charAt(0));
         System.out.println("Array sorted alphabetically by the first character only: " + Arrays.asList(cars));
 
-        //d) Strings that contain "e" first, everyting else second
+        //d) Strings that contain "e" first, everything else second
         Arrays.sort(cars, (car1, car2) -> {
             int result =0;
             if(car1.contains("e") && !car2.contains("e")){
@@ -56,7 +56,7 @@ public class Main<E> {
         //return the second String.
         //--------------------------------------------------------------------------------------------------------
 
-        System.out.println("The better string between 'building' and 'htight' is: ");
+        System.out.println("The better string between 'building' and 'height' is: ");
         System.out.println(betterString("building", "height", (s1, s2) -> s1.length() > s2.length()));
 
         System.out.println("The better sting between 'Ferrary' and 'Bentley' is ");
@@ -66,7 +66,7 @@ public class Main<E> {
         //=============================================================================================================================================
 
         //EX 3: Making generically-typed interfaces for which lambdas can be used.
-        //Use generics to replace your String-specific solutions to problem 3
+        //Use generics to replace your String-specific solutions to problem 2
         //with generically typed solutions. That is, replace betterString
         //with betterEntry and TwoStringPredicate with TwoElementPredicate. Make sure your previous
         //examples still work when you only change betterString to betterElement. But, now you should
@@ -74,7 +74,7 @@ public class Main<E> {
         //etc.
 
         System.out.println();
-        System.out.println("Determining the better element using a generic-typed interface:");
+        System.out.println("Determining the better element using a generic-typed interface for Car objectss:");
         Car car1 = new Car("Ferrary", "red", 2017);
         Car car2 = new Car("Audi", "black", 2009);
         System.out.println("The better element between car1 and car 2 is: ");
