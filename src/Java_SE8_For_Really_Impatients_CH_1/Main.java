@@ -3,8 +3,10 @@ package Java_SE8_For_Really_Impatients_CH_1;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
+import static java.util.Comparator.comparing;
 
 public class Main {
 
@@ -87,6 +89,46 @@ public class Main {
         System.out.println("Files with the extension '.java' from the ./src/lambdaExpressionsPart1: " + Arrays.asList(getFilesWithExtention(lambdaExpressionsPart1_sources, ".java")));
 
 
+        //==========================================================================================================
+        //==========================================================================================================
+
+//        4. Given an array of File objects, sort it so that the directories come before the
+//        files, and within each group, elements are sorted by path name. Use a lambda
+//        expression, not a Comparator.
+
+        System.out.println();
+        System.out.println("--- Exercice 4 ---");
+        Comparator<File> directoriesBeforeFiles = (f1, f2) -> {
+            int result = 0;
+            if(f1.isDirectory() && !f2.isDirectory()) {
+                result = 1;
+            } else if(!f1.isDirectory() && f2.isDirectory()) {
+                result = -1;
+            }
+            return result;
+        };
+
+        //Comparator<File> alphabeticalOrder = (f1, f2) -> f1.getName().compareTo(f2.getName());
+        Comparator<File> alphabeticalOrder = comparing(File::getName);
+        File[] sortedFiles = sortFilesFromDierctory(new File("."), directoriesBeforeFiles, alphabeticalOrder);
+        System.out.println("Content of the current directory sorted - directories first - alphabetically and then files - sorted alphabetically: " + Arrays.asList(sortedFiles));
+
+        //==========================================================================================================
+        //==========================================================================================================
+
+//      7. Write a static method andThen that takes as parameters two Runnable instances
+//      and returns a Runnable that runs the first, then the second. In the main method,
+//      pass two lambda expressions into a call to andThen, and run the returned
+//      instance.
+
+        System.out.println();
+        System.out.println("--- Exercice 7 ---");
+        Runnable r1 = () -> System.out.println("This is from the first Runnable parameter of the andThen.");
+        Runnable r2 = () -> System.out.println("Thi is from the second Runnable parameter of the andThen.");
+        Runnable printTwoMessages = andThen(r1, r2);
+        Thread thread = new Thread(printTwoMessages);
+        thread.start();
+
 
 
     }
@@ -121,6 +163,31 @@ public class Main {
     public static File[] getFilesWithExtention(File directory, String extension) {
         return directory.listFiles(f -> f.getName().endsWith(extension));
     }
+
+    public static File[] sortFilesFromDierctory(File directory, Comparator c1, Comparator c2) {
+        File[] filesFromDirectory = directory.listFiles();
+        Arrays.sort(filesFromDirectory, c1.reversed().thenComparing(c2));
+        return filesFromDirectory;
+    }
+
+    public static Runnable andThen(Runnable r1, Runnable r2) {
+        //***THE OLD CODING STYLE VERSION:
+
+//        Runnable result = new Runnable() {
+//            public void run() {
+//                r1.run();
+//                r2.run();
+//            }
+//        };
+//        return result;
+
+        //***THE FUNCTIONAL VERSION OF THE ABOVE CODE:
+        return () -> {
+                        r1.run();
+                        r2.run();
+                };
+    }
+
 
 
 }
