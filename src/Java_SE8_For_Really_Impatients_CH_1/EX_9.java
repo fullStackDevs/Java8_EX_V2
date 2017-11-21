@@ -2,6 +2,7 @@ package Java_SE8_For_Really_Impatients_CH_1;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class EX_9 {
 
@@ -16,6 +17,7 @@ public class EX_9 {
         myCollection.add(a3);
 
         myCollection.forEachIf(System.out::println, a -> a.getWeight() > 90);
+
 
     }
 }
