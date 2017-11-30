@@ -1,4 +1,4 @@
-package Java_SE8_For_Really_Impatients_CH_1;
+package Java_SE8_ForReally_Impatients_CH_1;
 
 import java.util.Collection;
 import java.util.function.Consumer;
