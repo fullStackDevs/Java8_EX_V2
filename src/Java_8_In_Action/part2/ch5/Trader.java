@@ -21,7 +21,7 @@ public class Trader {
     @Override
     public String toString() {
         return "Trader " +
-                 name + '\'' +
-                " in '" + city;
+                 name  +
+                " in " + city;
     }
 }
